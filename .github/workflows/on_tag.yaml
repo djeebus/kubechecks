@@ -73,7 +73,7 @@ jobs:
   release-multiarch:
     runs-on: ubuntu-22.04
     needs:
-      - release
+      - release-docker
     steps:
       - name: extract tag and sha
         run: |
