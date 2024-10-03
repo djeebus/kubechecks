@@ -192,6 +192,10 @@ func (c *Client) buildRepoFromComment(context context.Context, comment *github.I
 	owner := comment.GetIssue().GetRepository().GetOwner().GetName()
 	repo := comment.GetIssue().GetRepository().GetName()
 	prNumber := comment.GetIssue().GetNumber()
+	if prNumber == 0 {
+		return nilPr
+	}
+
 	pr, ghStatus, err := c.googleClient.PullRequests.Get(context, owner, repo, prNumber)
 	if err != nil || ghStatus.StatusCode < 200 || ghStatus.StatusCode >= 300 {
 		log.Error().Msgf("failed to get pull request: %s", err)

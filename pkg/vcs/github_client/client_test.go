@@ -394,7 +394,13 @@ func TestClient_buildRepoFromComment(t *testing.T) {
 				context: context.TODO(),
 				comment: &github.IssueCommentEvent{
 					Issue: &github.Issue{
-						URL: github.String("https://github.com/zapier/kubechecks/pull/250"),
+						Number: github.Int(250),
+						Repository: &github.Repository{
+							Name: github.String("prguy"),
+							Owner: &github.User{
+								Name: github.String("zapier;"),
+							},
+						},
 					},
 					Repo: &github.Repository{
 						DefaultBranch: github.String("main"),
